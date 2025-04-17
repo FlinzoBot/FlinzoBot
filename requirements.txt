@@ -1,0 +1,6 @@
+python-telegram-bot
+qrcode
+Pillow
+aiohttp
+bs4
+requests
