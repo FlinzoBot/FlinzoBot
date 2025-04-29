@@ -34,6 +34,8 @@ Other Tools:
 /spotify_thumbnail - Get the thumbnail from a Spotify URL
 /youtube_thumbnail - Get the thumbnail from a YouTube URL
 /qr_code - Generate a QR code from a given text or link
+
+If you need help, please see the support channel: https://t.me/FlinzoSupport
 """
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
