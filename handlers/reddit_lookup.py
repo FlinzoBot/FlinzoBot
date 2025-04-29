@@ -11,7 +11,7 @@ from telegram.ext import (
 ASK_REDDIT_USER = range(1)
 
 async def reddit_lookup_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Please provide the Reddit username (e.g. username):")
+    await update.message.reply_text("Please provide the Reddit username (withour 'u/', eg. stainowy):")
     return ASK_REDDIT_USER
 
 async def handle_reddit_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -37,7 +37,7 @@ async def handle_reddit_user(update: Update, context: ContextTypes.DEFAULT_TYPE)
     comment_karma = user_data.get("comment_karma", "N/A")
 
     info = (
-        f"**Reddit User: {username}**\n"
+        f"**{username}**\n"
         f"- Total Karma: {karma}\n"
         f"- Link Karma: {link_karma}\n"
         f"- Comment Karma: {comment_karma}\n"
