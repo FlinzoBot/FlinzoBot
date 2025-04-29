@@ -21,19 +21,18 @@ Our application has among others webhook sender, domain lookup, ip info, rng, di
 > The application code uses libraries that are in the `requirements.txt` file. When it comes to API, you can find all the libraries we used below:
 
 > `https://rdap.org/domain`
->
 > `http://ip-api.com`
->
 > `https://api.mcsrvstat.us`
->
 > `https://api.ssllabs.com`
->
 > `https://img.youtube.com`
+> `https://www.reddit.com/user`
+> `https://api.chess.com/pub/player`
+> `https://api.github.com/users`
 
 > Thanks to their owners!
 
 ## Do you need a help?
 
-> Join our [Discord server](https://discord.com/invite/nDEA887yaW) and create a ticket.If you have some important issue you can contact one of the project owners via email: `stainowy@proton.me` or `graynixx@proton.me`. The response via email will be much longer than via Discord.
+> Join our [Discord server](https://discord.com/invite/nDEA887yaW) and create a ticket. If you have some important issue you can contact one of the project owners via email: `stainowy@proton.me` or `graynixx@proton.me`. The response via email will be much longer than via Discord.
 
 ❤ Made with love by [@stainowy](https://github.com/stainowy) and [@graynixx](https://github.com/graynixx)
