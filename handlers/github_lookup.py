@@ -11,7 +11,7 @@ from telegram.ext import (
 ASK_GITHUB_USER = range(1)
 
 async def github_lookup_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Podaj nazwę użytkownika GitHub:")
+    await update.message.reply_text("Enter github username:")
     return ASK_GITHUB_USER
 
 async def handle_github_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -25,11 +25,11 @@ async def handle_github_user(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     data = response.json()
     name = data.get("name", username)
-    bio = data.get("bio", "Brak opisu")
+    bio = data.get("bio", "No bio")
     public_repos = data.get("public_repos", 0)
     followers = data.get("followers", 0)
     following = data.get("following", 0)
-    location = data.get("location", "Nie podano")
+    location = data.get("location", "N/A")
     created_at = data.get("created_at", "N/A")[:10]
     profile_url = data.get("html_url", f"https://github.com/{username}")
 
