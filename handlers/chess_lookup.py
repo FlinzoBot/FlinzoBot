@@ -7,11 +7,12 @@ from telegram.ext import (
     ContextTypes,
     filters,
 )
+from datetime import datetime
 
-ASK_CHESS_USERNAME = range(1)
+ASK_CHESS_USERNAME = 0
 
 async def chess_lookup_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Enter your Chess.com username:")
+    await update.message.reply_text("Please enter your Chess.com username:")
     return ASK_CHESS_USERNAME
 
 async def handle_chess_username(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -20,15 +21,16 @@ async def handle_chess_username(update: Update, context: ContextTypes.DEFAULT_TY
     
     response = requests.get(base_url)
     if response.status_code != 200:
-        await update.message.reply_text("No such user was found or an error occurred..")
+        await update.message.reply_text("No such user was found or an error occurred.")
         return ConversationHandler.END
 
     profile = response.json()
+
     stats_url = f"{base_url}/stats"
     stats_response = requests.get(stats_url)
 
     if stats_response.status_code != 200:
-        await update.message.reply_text("Failed to get player stats.")
+        await update.message.reply_text("Failed to retrieve player stats.")
         return ConversationHandler.END
 
     stats = stats_response.json()
@@ -37,15 +39,17 @@ async def handle_chess_username(update: Update, context: ContextTypes.DEFAULT_TY
     rapid = stats.get("chess_rapid", {}).get("last", {})
     bullet = stats.get("chess_bullet", {}).get("last", {})
 
+    joined_ts = profile.get("joined")
+    joined_date = datetime.utcfromtimestamp(joined_ts).strftime('%Y-%m-%d') if joined_ts else 'N/A'
+
     info = (
-        f"*{profile.get('username', username)}*\n"
-        f"- Status: {'aktywny' if profile.get('status') == 'premium' else 'zwykły'}\n"
+        f"**{profile.get('username', username)}**\n"
+        f"- Account status: {profile.get('status', 'N/A')}\n"
         f"- Country: {profile.get('country', '').split('/')[-1]}\n"
-        f"- Account created at: {profile.get('joined', 'N/A')}\n"
-        f"\n"
-        f"*Ranking Blitz*: {blitz.get('rating', 'N/A')}\n"
-        f"*Ranking Rapid*: {rapid.get('rating', 'N/A')}\n"
-        f"*Ranking Bullet*: {bullet.get('rating', 'N/A')}\n"
+        f"- Account created on: {joined_date}\n\n"
+        f"- *Blitz Rating*: {blitz.get('rating', 'N/A')}\n"
+        f"- *Rapid Rating*: {rapid.get('rating', 'N/A')}\n"
+        f"- *Bullet Rating*: {bullet.get('rating', 'N/A')}\n"
     )
 
     await update.message.reply_text(info, parse_mode="Markdown")
