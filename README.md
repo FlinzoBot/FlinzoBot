@@ -3,7 +3,8 @@
 An open source bot on Telegram offering a wide range of tools for websites, discord, math and more.
 Our application has among others webhook sender, domain lookup, ip info, rng, discord userinfo, discord serverinfo and many more most important elements!
 
-**>** https://t.me/FlinzoBot
+**>** https://t.me/FlinzoBot - Lanch Bot
+**>** https://t.me/FlinzoSupport - Bot Support Channel
 
 ## How to start working with our bot?
 
